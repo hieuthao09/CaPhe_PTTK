@@ -4,7 +4,9 @@
  */
 package gui;
 
+import dao.ExcuteData;
 import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
@@ -20,8 +22,58 @@ public class TrangChu extends javax.swing.JFrame {
     public TrangChu() {
         initComponents();
         setLocationRelativeTo (null);
+        trongsuot();
     }
-
+    ExcuteData ex;
+    public TrangChu(ExcuteData ex) {
+        initComponents();
+        setLocationRelativeTo (null);
+        trongsuot();
+        this.ex = ex;
+    }
+    private void trongsuot()
+    {
+        btn_goimon.setOpaque(false);
+        btn_goimon.setContentAreaFilled(false);
+        btn_goimon.setBorderPainted(false);
+        btn_goimon.setForeground(Color.WHITE); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        btn_goimon.setBackground(new Color(0, 0, 0, 0));
+        
+        btn_nhap.setOpaque(false);
+        btn_nhap.setContentAreaFilled(false);
+        btn_nhap.setBorderPainted(false);
+        btn_nhap.setForeground(Color.WHITE); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        btn_nhap.setBackground(new Color(0, 0, 0, 0));
+        
+        btn_suco.setOpaque(false);
+        btn_suco.setContentAreaFilled(false);
+        btn_suco.setBorderPainted(false);
+        btn_suco.setForeground(Color.WHITE); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        btn_suco.setBackground(new Color(0, 0, 0, 0));
+        
+        btn_xuat.setOpaque(false);
+        btn_xuat.setContentAreaFilled(false);
+        btn_xuat.setBorderPainted(false);
+        btn_xuat.setForeground(Color.WHITE); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        btn_xuat.setBackground(new Color(0, 0, 0, 0));
+        
+        btn_thoat.setOpaque(false);
+        btn_thoat.setContentAreaFilled(false);
+        btn_thoat.setBorderPainted(false);
+        btn_thoat.setForeground(Color.WHITE); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        btn_thoat.setBackground(new Color(0, 0, 0, 0));
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,25 +90,25 @@ public class TrangChu extends javax.swing.JFrame {
         btn_nhap = new javax.swing.JButton();
         btn_thoat = new javax.swing.JButton();
         btn_suco = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        main.setBackground(new java.awt.Color(204, 204, 204));
+        main.setBackground(new java.awt.Color(255, 255, 255));
         main.setMinimumSize(new java.awt.Dimension(780, 600));
         main.setOpaque(false);
         main.setLayout(new java.awt.BorderLayout());
         getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 780, 600));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(220, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(220, 600));
+        jPanel1.setRequestFocusEnabled(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_goimon.setBackground(new java.awt.Color(153, 153, 255));
+        btn_goimon.setBackground(new java.awt.Color(242, 242, 242));
         btn_goimon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_goimon.setText("GỌI MÓN");
         btn_goimon.setAlignmentY(0.0F);
@@ -64,7 +116,7 @@ public class TrangChu extends javax.swing.JFrame {
         btn_goimon.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(btn_goimon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 220, 60));
 
-        btn_xuat.setBackground(new java.awt.Color(153, 153, 255));
+        btn_xuat.setBackground(new java.awt.Color(242, 242, 242));
         btn_xuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_xuat.setText("XỬ LÝ XUẤT");
         btn_xuat.setAlignmentY(0.0F);
@@ -72,7 +124,7 @@ public class TrangChu extends javax.swing.JFrame {
         btn_xuat.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(btn_xuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 220, 70));
 
-        btn_nhap.setBackground(new java.awt.Color(153, 153, 255));
+        btn_nhap.setBackground(new java.awt.Color(242, 242, 242));
         btn_nhap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_nhap.setText("XỬ LÝ NHẬP");
         btn_nhap.setAlignmentY(0.0F);
@@ -80,7 +132,7 @@ public class TrangChu extends javax.swing.JFrame {
         btn_nhap.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(btn_nhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 220, 70));
 
-        btn_thoat.setBackground(new java.awt.Color(153, 153, 255));
+        btn_thoat.setBackground(new java.awt.Color(242, 242, 242));
         btn_thoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_thoat.setText("ĐĂNG XUẤT");
         btn_thoat.setAlignmentY(0.0F);
@@ -93,7 +145,7 @@ public class TrangChu extends javax.swing.JFrame {
         });
         jPanel1.add(btn_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 220, 70));
 
-        btn_suco.setBackground(new java.awt.Color(153, 153, 255));
+        btn_suco.setBackground(new java.awt.Color(242, 242, 242));
         btn_suco.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_suco.setText("SỰ CỐ");
         btn_suco.setAlignmentY(0.0F);
@@ -106,59 +158,36 @@ public class TrangChu extends javax.swing.JFrame {
         });
         jPanel1.add(btn_suco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 220, 70));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 153));
-        jPanel3.setForeground(new java.awt.Color(102, 51, 0));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 150, 30));
-
-        jPanel5.setBackground(new java.awt.Color(255, 153, 153));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 150, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/hinh-ca-phe-mot-minh-dep-buon-nhat.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 600));
+        jPanel1.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void doimaubtn(JButton t)
+    {
+        t.setOpaque(true);
+        t.setContentAreaFilled(true);
+        t.setBorderPainted(false);
+        t.setForeground(Color.BLACK); // Đặt màu chữ trắng cho button (tuỳ chọn)
+        
+        // Đặt màu nền trong suốt cho button
+        t.setBackground(new Color(255, 255, 255));
+    }
     private void btn_sucoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sucoActionPerformed
         // TODO add your handling code here:
-        btn_suco.setBackground(new Color(255, 255, 204));
+        doimaubtn(btn_suco);
         main.add(new PhieuSuCo());
-        setForm(new SuCo(main));
+        setForm(new dsSuCo(main, ex));
         
     }//GEN-LAST:event_btn_sucoActionPerformed
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Login t = new Login();
+        Login t = new Login(ex);
         t.showLogin();
     }//GEN-LAST:event_btn_thoatActionPerformed
 
@@ -181,10 +210,8 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btn_suco;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JButton btn_xuat;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel main;
     // End of variables declaration//GEN-END:variables
 }

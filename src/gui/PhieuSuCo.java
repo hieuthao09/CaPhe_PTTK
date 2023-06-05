@@ -4,6 +4,7 @@
  */
 package gui;
 
+import dao.ExcuteData;
 import javax.swing.JComponent;
 
 /**
@@ -19,9 +20,11 @@ public class PhieuSuCo extends javax.swing.JPanel {
         initComponents();
     }
      JComponent com;
-    public PhieuSuCo(JComponent com) {
+     ExcuteData ex;
+    public PhieuSuCo(JComponent com, ExcuteData ex) {
         initComponents();
         this.com = com;
+        this.ex = ex;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,7 +35,7 @@ public class PhieuSuCo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btn_trove = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -57,13 +60,13 @@ public class PhieuSuCo extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(780, 600));
         setPreferredSize(new java.awt.Dimension(780, 600));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("<");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_trove.setBackground(new java.awt.Color(255, 255, 204));
+        btn_trove.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btn_trove.setText("<");
+        btn_trove.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_trove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_troveActionPerformed(evt);
             }
         });
 
@@ -206,14 +209,14 @@ public class PhieuSuCo extends javax.swing.JPanel {
                         .addGap(231, 231, 231))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_trove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_trove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,9 +225,9 @@ public class PhieuSuCo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_troveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_troveActionPerformed
         // TODO add your handling code here:
-        SuCo psc = new SuCo(com);
+        dsSuCo psc = new dsSuCo(com, ex);
         psc.setVisible(true);
         com.removeAll();
         // Thêm form PhieuSuCo vào JComponent
@@ -234,11 +237,11 @@ public class PhieuSuCo extends javax.swing.JPanel {
         com.repaint();
         // Hiển thị lại JComponent
         com.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }//GEN-LAST:event_btn_troveActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_trove;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;

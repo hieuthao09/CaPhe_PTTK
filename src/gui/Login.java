@@ -6,9 +6,16 @@ package gui;
 
 import bll.TaiKhoan_bll;
 import dao.ExcuteData;
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import pojo.TaiKhoan;
 
 /**
@@ -26,7 +33,18 @@ public class Login extends javax.swing.JFrame {
         LoginSystem();
         ck_showpass.setBackground(new Color(255, 255, 255, 95));
         Mo.setBackground(new Color(255, 255, 255, 95));
+        ck_showpass.setOpaque(false);
+
+    }
+    public Login(ExcuteData t) {
+        initComponents();
+        setLocationRelativeTo (null);
+        this.t = t;
+        ck_showpass.setBackground(new Color(255, 255, 255, 95));
+        Mo.setBackground(new Color(255, 255, 255, 95));
+        ck_showpass.setOpaque(false);
         
+
     }
     private ExcuteData t;
     private TaiKhoan_bll tk_bll;
@@ -62,15 +80,21 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setTitle("Login");
-        setMinimumSize(new java.awt.Dimension(800, 538));
+        setMinimumSize(new java.awt.Dimension(791, 519));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 538));
-        setType(java.awt.Window.Type.UTILITY);
+        setPreferredSize(new java.awt.Dimension(791, 519));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(800, 538));
-        jPanel3.setPreferredSize(new java.awt.Dimension(800, 538));
+        jPanel3.setMinimumSize(new java.awt.Dimension(800, 519));
+        jPanel3.setPreferredSize(new java.awt.Dimension(800, 519));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Mo.setBackground(new java.awt.Color(153, 153, 153));
+        Mo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MoMouseEntered(evt);
+            }
+        });
 
         txt_Usename.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         txt_Usename.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -92,11 +116,16 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("UserName");
 
-        btn_exit.setBackground(new java.awt.Color(0, 102, 255));
-        btn_exit.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
-        btn_exit.setForeground(new java.awt.Color(255, 255, 255));
+        btn_exit.setBackground(new java.awt.Color(102, 204, 255));
+        btn_exit.setFont(new java.awt.Font("SketchFlow Print", 1, 18)); // NOI18N
         btn_exit.setText("Exit");
         btn_exit.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_exit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/images (1).jpg"))); // NOI18N
+        btn_exit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                btn_exitStateChanged(evt);
+            }
+        });
         btn_exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_exitActionPerformed(evt);
@@ -104,20 +133,42 @@ public class Login extends javax.swing.JFrame {
         });
 
         btn_login.setBackground(new java.awt.Color(255, 51, 51));
-        btn_login.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
+        btn_login.setFont(new java.awt.Font("SketchFlow Print", 1, 18)); // NOI18N
         btn_login.setForeground(new java.awt.Color(255, 255, 255));
         btn_login.setText("Login");
-        btn_login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_login.setBorder(null);
+        btn_login.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1278708535.jpg"))); // NOI18N
+        btn_login.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                btn_loginStateChanged(evt);
+            }
+        });
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_loginActionPerformed(evt);
             }
         });
 
-        ck_showpass.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
+        ck_showpass.setFont(new java.awt.Font("Segoe Print", 0, 16)); // NOI18N
+        ck_showpass.setForeground(new java.awt.Color(255, 255, 255));
         ck_showpass.setText("Show");
         ck_showpass.setBorder(null);
         ck_showpass.setOpaque(true);
+        ck_showpass.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ck_showpassStateChanged(evt);
+            }
+        });
+        ck_showpass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ck_showpassFocusGained(evt);
+            }
+        });
+        ck_showpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ck_showpassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MoLayout = new javax.swing.GroupLayout(Mo);
         Mo.setLayout(MoLayout);
@@ -127,23 +178,24 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ck_showpass))
                     .addGroup(MoLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(MoLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(33, 33, 33)
-                                .addComponent(txt_Usename, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_Usename))
                             .addGroup(MoLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(42, 42, 42)
-                                .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                                .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(MoLayout.createSequentialGroup()
+                                        .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_password))))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         MoLayout.setVerticalGroup(
             MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,46 +211,31 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ck_showpass)
-                    .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(ck_showpass)
+                .addGap(18, 18, 18)
+                .addGroup(MoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_exit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jPanel3.add(Mo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 460, 210));
+        jPanel3.add(Mo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 460, 260));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMinimumSize(new java.awt.Dimension(800, 538));
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 538));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe Script", 1, 48)); // NOI18N
         jLabel3.setText("COFFEE STAR");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 6, 408, 61));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(209, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(476, 476, 476))
-        );
-
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 70));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 70));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ryn-coffee-amp-tea-1104594.jpg"))); // NOI18N
         jLabel4.setMinimumSize(new java.awt.Dimension(800, 538));
         jLabel4.setPreferredSize(new java.awt.Dimension(800, 538));
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 470));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 790, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,18 +245,59 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoMouseEntered
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_MoMouseEntered
+
+    private void ck_showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ck_showpassActionPerformed
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_ck_showpassActionPerformed
+
+    private void ck_showpassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ck_showpassFocusGained
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_ck_showpassFocusGained
+
+    private void ck_showpassStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ck_showpassStateChanged
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_ck_showpassStateChanged
+
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
-       login();
+        login();
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_exitActionPerformed
+
+    private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            login();
+        }
+    }//GEN-LAST:event_txt_passwordKeyPressed
+
+    private void btn_loginStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btn_loginStateChanged
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_btn_loginStateChanged
+
+    private void btn_exitStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btn_exitStateChanged
+        // TODO add your handling code here:
+        jPanel3.updateUI();
+    }//GEN-LAST:event_btn_exitStateChanged
 
     private void login()
     {
@@ -238,7 +316,7 @@ public class Login extends javax.swing.JFrame {
         if(checkLogin(tk))
         {
             this.setVisible(false);
-            TrangChu tc = new TrangChu();
+            TrangChu tc = new TrangChu(t);
             tc.setVisible(true);
             
         }
@@ -247,20 +325,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(btn_login, "Đăng nhập thất bại");
         }
     }
-        
-    private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
-        // TODO add your handling code here:
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-         {
-             login();
-         }
-    }//GEN-LAST:event_txt_passwordKeyPressed
-
-    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_btn_exitActionPerformed
-    public void showLogin()
+            public void showLogin()
     {
         this.setVisible(true);
     }

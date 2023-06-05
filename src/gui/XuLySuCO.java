@@ -4,27 +4,34 @@
  */
 package gui;
 
-import java.awt.Component;
+import bll.SuCo_bll;
+import dao.ExcuteData;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import pojo.SuCo;
 
 /**
  *
  * @author HieuThao
  */
-public class SuCo extends javax.swing.JPanel {
+public class XuLySuCO extends javax.swing.JPanel {
 
     /**
-     * Creates new form SuCo
+     * Creates new form XuLySuCO
      */
-    public SuCo() {
+    public XuLySuCO() {
         initComponents();
     }
     JComponent com;
-    public SuCo(JComponent com) {
+    ExcuteData ex;
+    public XuLySuCO(JComponent com, ExcuteData ex) {
         initComponents();
         this.com = com;
+        this.ex = ex;
+        //loadHeading();
+        //inittable_SuCo();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,9 +48,13 @@ public class SuCo extends javax.swing.JPanel {
         btn_TaoMoi = new javax.swing.JButton();
         btn_CapNhat = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 204));
         setMinimumSize(new java.awt.Dimension(780, 600));
-        setPreferredSize(new java.awt.Dimension(780, 600));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setOpaque(false);
 
         tbl_SuCo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,13 +113,9 @@ public class SuCo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CapNhatActionPerformed
-
     private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
         // TODO add your handling code here:
-        PhieuSuCo psc = new PhieuSuCo(com);
+        PhieuSuCo psc = new PhieuSuCo(com, ex);
         psc.setVisible(true);
         com.removeAll();
         // Thêm form PhieuSuCo vào JComponent
@@ -120,6 +127,34 @@ public class SuCo extends javax.swing.JPanel {
         com.setVisible(true);
     }//GEN-LAST:event_btn_TaoMoiActionPerformed
 
+    private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_CapNhatActionPerformed
+    DefaultTableModel model ;
+    Vector<String> heading = new Vector<String>();
+    ArrayList<SuCo> content = new ArrayList<>();
+    
+    private void loadHeading()
+    {
+        heading.add("Mã sự cố");
+        heading.add("Tên sự cố");
+        heading.add("Hình thức");
+        heading.add("Chi phí");
+        heading.add("Thời gian xảy ra");
+        heading.add("Thời gian kết thúc");
+        heading.add("Người lập");
+        heading.add("Tên loại");
+    }
+    private void inittable_SuCo()
+    {
+        model = new DefaultTableModel();
+        SuCo_bll xl = new SuCo_bll(ex);
+        content = xl.GetData();
+        for (SuCo s : content) {
+            //model.addRow(new Object[]{, suCo.getTenSuCo()});
+        }
+        tbl_SuCo.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CapNhat;
