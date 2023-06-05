@@ -30,7 +30,6 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo (null);
-        LoginSystem();
         ck_showpass.setBackground(new Color(255, 255, 255, 95));
         Mo.setBackground(new Color(255, 255, 255, 95));
         ck_showpass.setOpaque(false);
@@ -40,11 +39,11 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo (null);
         this.t = t;
+        LogoutSystem();
         ck_showpass.setBackground(new Color(255, 255, 255, 95));
         Mo.setBackground(new Color(255, 255, 255, 95));
         ck_showpass.setOpaque(false);
         
-
     }
     private ExcuteData t;
     private TaiKhoan_bll tk_bll;
@@ -52,6 +51,11 @@ public class Login extends javax.swing.JFrame {
     {
         t = new ExcuteData("sa","123","QL_CAPHE","HIEUTHAO\\THAO");
         tk_bll = new TaiKhoan_bll(t);
+    }
+    private void LogoutSystem()
+    {
+        t.close();
+        
     }
     private boolean checkLogin(TaiKhoan tk)
     {
@@ -301,15 +305,16 @@ public class Login extends javax.swing.JFrame {
 
     private void login()
     {
-            if(txt_Usename.getText().isEmpty())
+        LoginSystem();
+        if(txt_Usename.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(btn_login, "Bạn chưa điền username");
+            JOptionPane.showMessageDialog(this, "Bạn chưa điền username");
             return;
             
         }
         if(String.valueOf(txt_password.getPassword()).isEmpty())
         {
-            JOptionPane.showMessageDialog(btn_login, "Bạn chưa điền password");
+            JOptionPane.showMessageDialog(this, "Bạn chưa điền password");
             return;
         }
         TaiKhoan tk = new TaiKhoan(txt_Usename.getText(), String.valueOf(txt_password.getPassword()));

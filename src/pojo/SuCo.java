@@ -17,10 +17,10 @@ public class SuCo {
     private double ChiPhi ;
     private String  TGXayRa ;
     private String  TGKetThuc ;
-    private String NguoiLap ;
+    private Nhanvien NguoiLap ;
     private LoaiSuCo MaLoai ;
 
-    public SuCo(String masc, String tensc, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, String NguoiLap, LoaiSuCo MaLoai) {
+    public SuCo(String masc, String tensc, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien NguoiLap, LoaiSuCo MaLoai) {
         this.masc = masc;
         this.tensc = tensc;
         this.HinhThuc = HinhThuc;
@@ -31,7 +31,7 @@ public class SuCo {
         this.MaLoai = MaLoai;
     }
 
-    public SuCo(String masc, String tensc, String MotaCT, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, String NguoiLap, LoaiSuCo MaLoai) {
+    public SuCo(String masc, String tensc, String MotaCT, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien NguoiLap, LoaiSuCo MaLoai) {
         this.masc = masc;
         this.tensc = tensc;
         this.MotaCT = MotaCT;
@@ -101,11 +101,11 @@ public class SuCo {
         this.TGKetThuc = TGKetThuc;
     }
 
-    public String getNguoiLap() {
+    public Nhanvien getNguoiLap() {
         return NguoiLap;
     }
 
-    public void setNguoiLap(String NguoiLap) {
+    public void setNguoiLap(Nhanvien NguoiLap) {
         this.NguoiLap = NguoiLap;
     }
 

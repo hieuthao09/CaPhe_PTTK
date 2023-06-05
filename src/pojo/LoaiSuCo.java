@@ -12,6 +12,11 @@ public class LoaiSuCo {
     private String maloai;
     private String tenLoai;
 
+    @Override
+    public String toString() {
+        return tenLoai;
+    }
+    
     public LoaiSuCo() {
     }
 

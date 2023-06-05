@@ -54,6 +54,7 @@ public class ExcuteData {
         }
         return t;
     }
+    @SuppressWarnings("unchecked")
      public Vector GetDataVector(String strSQL, int praremeter)
     {
         Vector t = new Vector();
@@ -104,5 +105,19 @@ public class ExcuteData {
             Logger.getLogger(ExcuteData.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    public boolean close()
+    {
+        try
+        {
+            kn.con.close();
+            System.out.println("Da dong ket noi");
+            return true;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+        
     }
 }

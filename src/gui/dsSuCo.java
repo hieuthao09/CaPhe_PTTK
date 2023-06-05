@@ -36,8 +36,11 @@ public class dsSuCo extends javax.swing.JPanel {
         initComponents();
         customizeTable();
     }
+    boolean flag = true;
     JComponent com;
     ExcuteData ex;
+    SuCo_bll xl ;
+    SuCo t = new SuCo();
     public dsSuCo(JComponent com, ExcuteData ex) {
         initComponents();
         this.com = com;
@@ -63,11 +66,11 @@ public class dsSuCo extends javax.swing.JPanel {
     }
     private void inittable_SuCo()
     {
-        SuCo_bll xl = new SuCo_bll(ex);
-        content = xl.GetData();
+        xl = new SuCo_bll(ex);
+        content = xl.laydanhsachSC();
         DecimalFormat decimalFormat = new DecimalFormat("#,###đ");
         for (SuCo s : content) {
-            model.addRow(new Object[]{s.getMasc(), s.getTensc(),s.getHinhThuc(), decimalFormat.format(s.getChiPhi()), s.getTGXayRa(), s.getTGKetThuc(),s.getNguoiLap(), s.getMaLoai().getTenLoai()});
+            model.addRow(new Object[]{s.getMasc(), s.getTensc(),s.getHinhThuc(), decimalFormat.format(s.getChiPhi()), s.getTGXayRa(), s.getTGKetThuc(),s.getNguoiLap().getHoTen(), s.getMaLoai().getTenLoai()});
         }
         tbl_SuCo.setModel(model);
      }
@@ -99,6 +102,11 @@ public class dsSuCo extends javax.swing.JPanel {
         jScrollPane1.setAlignmentY(0.0F);
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jScrollPane1.setOpaque(false);
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
 
         tbl_SuCo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,6 +119,11 @@ public class dsSuCo extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_SuCo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_SuCoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_SuCo);
 
         jPanel1.setAlignmentX(0.0F);
@@ -162,11 +175,14 @@ public class dsSuCo extends javax.swing.JPanel {
 
     private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CapNhatActionPerformed
-
-    private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
-        // TODO add your handling code here:
-        PhieuSuCo psc = new PhieuSuCo(com, ex);
+         int row = tbl_SuCo.getSelectedRow();
+        if(row<0)
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng");
+            return;
+        }
+        flag = false;
+        PhieuSuCo psc = new PhieuSuCo(com, ex, flag,t);
         psc.setVisible(true);
         com.removeAll();
         // Thêm form PhieuSuCo vào JComponent
@@ -176,7 +192,47 @@ public class dsSuCo extends javax.swing.JPanel {
         com.repaint();
         // Hiển thị lại JComponent
         com.setVisible(true);
+    }//GEN-LAST:event_btn_CapNhatActionPerformed
+
+    private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
+        // TODO add your handling code here:
+       
+        flag = true;
+        PhieuSuCo psc = new PhieuSuCo(com, ex, flag);
+        psc.setVisible(true);
+        com.removeAll();
+        // Thêm form PhieuSuCo vào JComponent
+        com.add(psc);
+        // Cập nhật giao diện
+        com.revalidate();
+        com.repaint();
+        // Hiển thị lại JComponent
+        com.setVisible(true);
+        
     }//GEN-LAST:event_btn_TaoMoiActionPerformed
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void tbl_SuCoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_SuCoMouseClicked
+        // TODO add your handling code here:
+        int row = tbl_SuCo.getSelectedRow();
+        if(row<0)
+        {
+            JOptionPane.showMessageDialog(tbl_SuCo, "Bạn chưa chọn dòng");
+        }
+        else
+        {
+            for(SuCo i : content)
+            {
+                if(i.getMasc() == tbl_SuCo.getValueAt(row, 0).toString() )
+                {
+                    t = i;
+                }
+            }
+        }
+    }//GEN-LAST:event_tbl_SuCoMouseClicked
     private void customizeTable() {
         // Đổi màu nền cho table header
         JTableHeader tableHeader = tbl_SuCo.getTableHeader();
@@ -184,7 +240,6 @@ public class dsSuCo extends javax.swing.JPanel {
         tableHeader.setForeground(Color.WHITE);
         Font tableFont = tbl_SuCo.getFont();
         tbl_SuCo.setFont(new Font(tableFont.getName(), tableFont.getStyle(), tableFont.getSize() + 5));
-        tbl_SuCo.setEnabled(false);
         // Đổi màu chữ cho các ô trong table
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setForeground(Color.BLACK);
