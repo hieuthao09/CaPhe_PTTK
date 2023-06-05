@@ -8,13 +8,13 @@ package pojo;
  *
  * @author HieuThao
  */
-public class Nhanvien {
+public class Nhanvien_pojo {
     private String MaNV;
     private String HoTen;
     private String NgaySinh;
     private String SDT;
     private String CMND;
-    private ChucVu MaCV;
+    private ChucVu_pojo MaCV;
     private String GioiTinh;
 
     @Override
@@ -22,10 +22,10 @@ public class Nhanvien {
         return HoTen ;
     }
     
-    public Nhanvien() {
+    public Nhanvien_pojo() {
     }
 
-    public Nhanvien(String MaNV, String HoTen, String NgaySinh, String SDT, String CMND, ChucVu MaCV, String GioiTinh) {
+    public Nhanvien_pojo(String MaNV, String HoTen, String NgaySinh, String SDT, String CMND, ChucVu_pojo MaCV, String GioiTinh) {
         this.MaNV = MaNV;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -35,7 +35,7 @@ public class Nhanvien {
         this.GioiTinh = GioiTinh;
     }
 
-    public Nhanvien(String MaNV, String HoTen, String NgaySinh, String SDT, String CMND) {
+    public Nhanvien_pojo(String MaNV, String HoTen, String NgaySinh, String SDT, String CMND) {
         this.MaNV = MaNV;
         this.HoTen = HoTen;
         this.NgaySinh = NgaySinh;
@@ -83,11 +83,11 @@ public class Nhanvien {
         this.CMND = CMND;
     }
 
-    public ChucVu getMaCV() {
+    public ChucVu_pojo getMaCV() {
         return MaCV;
     }
 
-    public void setMaCV(ChucVu MaCV) {
+    public void setMaCV(ChucVu_pojo MaCV) {
         this.MaCV = MaCV;
     }
 

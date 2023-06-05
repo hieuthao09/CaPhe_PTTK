@@ -180,7 +180,7 @@ public class TrangChu extends javax.swing.JFrame {
         // TODO add your handling code here:
         doimaubtn(btn_suco);
         main.add(new PhieuSuCo());
-        setForm(new dsSuCo(main, ex));
+        setForm(new XuLySuCo(main, ex));
         
     }//GEN-LAST:event_btn_sucoActionPerformed
 

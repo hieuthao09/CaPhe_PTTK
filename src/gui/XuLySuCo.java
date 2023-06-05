@@ -5,8 +5,8 @@
 package gui;
 
 import javax.swing.*;
-import bll.SuCo_bll;
-import pojo.SuCo;
+import bll.SuCo;
+import pojo.SuCo_pojo;
 import dao.ExcuteData;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,21 +27,21 @@ import javax.swing.table.TableColumn;
  *
  * @author HieuThao
  */
-public class dsSuCo extends javax.swing.JPanel {
+public class XuLySuCo extends javax.swing.JPanel {
 
     /**
-     * Creates new form SuCo
+     * Creates new form SuCo_pojo
      */
-    public dsSuCo() {
+    public XuLySuCo() {
         initComponents();
         customizeTable();
     }
     boolean flag = true;
     JComponent com;
     ExcuteData ex;
-    SuCo_bll xl ;
-    SuCo t = new SuCo();
-    public dsSuCo(JComponent com, ExcuteData ex) {
+    SuCo xl ;
+    SuCo_pojo t = new SuCo_pojo();
+    public XuLySuCo(JComponent com, ExcuteData ex) {
         initComponents();
         this.com = com;
         this.ex = ex;
@@ -51,7 +51,7 @@ public class dsSuCo extends javax.swing.JPanel {
     }
     DefaultTableModel model = new DefaultTableModel();;
     Vector<String> heading = new Vector<String>();
-    ArrayList<SuCo> content = new ArrayList<>();
+    ArrayList<SuCo_pojo> content = new ArrayList<>();
     
     private void loadHeading(DefaultTableModel model)
     {
@@ -66,10 +66,10 @@ public class dsSuCo extends javax.swing.JPanel {
     }
     private void inittable_SuCo()
     {
-        xl = new SuCo_bll(ex);
+        xl = new SuCo(ex);
         content = xl.laydanhsachSC();
         DecimalFormat decimalFormat = new DecimalFormat("#,###đ");
-        for (SuCo s : content) {
+        for (SuCo_pojo s : content) {
             model.addRow(new Object[]{s.getMasc(), s.getTensc(),s.getHinhThuc(), decimalFormat.format(s.getChiPhi()), s.getTGXayRa(), s.getTGKetThuc(),s.getNguoiLap().getHoTen(), s.getMaLoai().getTenLoai()});
         }
         tbl_SuCo.setModel(model);
@@ -224,7 +224,7 @@ public class dsSuCo extends javax.swing.JPanel {
         }
         else
         {
-            for(SuCo i : content)
+            for(SuCo_pojo i : content)
             {
                 if(i.getMasc() == tbl_SuCo.getValueAt(row, 0).toString() )
                 {

@@ -9,7 +9,7 @@ package pojo;
  *
  * @author HieuThao
  */
-public class SuCo {
+public class SuCo_pojo {
     private String masc;
     private String tensc;
     private String MotaCT ;
@@ -17,10 +17,10 @@ public class SuCo {
     private double ChiPhi ;
     private String  TGXayRa ;
     private String  TGKetThuc ;
-    private Nhanvien NguoiLap ;
-    private LoaiSuCo MaLoai ;
+    private Nhanvien_pojo NguoiLap ;
+    private LoaiSuCo_pojo MaLoai ;
 
-    public SuCo(String masc, String tensc, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien NguoiLap, LoaiSuCo MaLoai) {
+    public SuCo_pojo(String masc, String tensc, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien_pojo NguoiLap, LoaiSuCo_pojo MaLoai) {
         this.masc = masc;
         this.tensc = tensc;
         this.HinhThuc = HinhThuc;
@@ -31,7 +31,7 @@ public class SuCo {
         this.MaLoai = MaLoai;
     }
 
-    public SuCo(String masc, String tensc, String MotaCT, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien NguoiLap, LoaiSuCo MaLoai) {
+    public SuCo_pojo(String masc, String tensc, String MotaCT, String HinhThuc, double ChiPhi, String  TGXayRa, String  TGKetThuc, Nhanvien_pojo NguoiLap, LoaiSuCo_pojo MaLoai) {
         this.masc = masc;
         this.tensc = tensc;
         this.MotaCT = MotaCT;
@@ -42,7 +42,7 @@ public class SuCo {
         this.NguoiLap = NguoiLap;
         this.MaLoai = MaLoai;
     }
-    public SuCo() {
+    public SuCo_pojo() {
     }
 
     public String getMasc() {
@@ -101,19 +101,19 @@ public class SuCo {
         this.TGKetThuc = TGKetThuc;
     }
 
-    public Nhanvien getNguoiLap() {
+    public Nhanvien_pojo getNguoiLap() {
         return NguoiLap;
     }
 
-    public void setNguoiLap(Nhanvien NguoiLap) {
+    public void setNguoiLap(Nhanvien_pojo NguoiLap) {
         this.NguoiLap = NguoiLap;
     }
 
-    public LoaiSuCo getMaLoai() {
+    public LoaiSuCo_pojo getMaLoai() {
         return MaLoai;
     }
 
-    public void setMaLoai(LoaiSuCo MaLoai) {
+    public void setMaLoai(LoaiSuCo_pojo MaLoai) {
         this.MaLoai = MaLoai;
     }
     

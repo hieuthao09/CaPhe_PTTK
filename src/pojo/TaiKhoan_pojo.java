@@ -9,18 +9,18 @@ package pojo;
  *
  * @author HieuThao
  */
-public class TaiKhoan {
+public class TaiKhoan_pojo {
     private String TenDN;
     private String MatKhau;
     private String NgayTao;
 
-    public TaiKhoan(String TenDN, String MatKhau, String NgayTao) {
+    public TaiKhoan_pojo(String TenDN, String MatKhau, String NgayTao) {
         this.TenDN = TenDN;
         this.MatKhau = MatKhau;
         this.NgayTao = NgayTao;
     }
 
-    public TaiKhoan() {
+    public TaiKhoan_pojo() {
     }
 
     public String getTenDN() {
@@ -47,7 +47,7 @@ public class TaiKhoan {
         this.NgayTao = NgayTao;
     }
 
-    public TaiKhoan(String TenDN, String MatKhau) {
+    public TaiKhoan_pojo(String TenDN, String MatKhau) {
         this.TenDN = TenDN;
         this.MatKhau = MatKhau;
     }

@@ -8,7 +8,7 @@ package pojo;
  *
  * @author HieuThao
  */
-public class LoaiSuCo {
+public class LoaiSuCo_pojo {
     private String maloai;
     private String tenLoai;
 
@@ -17,10 +17,10 @@ public class LoaiSuCo {
         return tenLoai;
     }
     
-    public LoaiSuCo() {
+    public LoaiSuCo_pojo() {
     }
 
-    public LoaiSuCo(String maloai, String tenLoai) {
+    public LoaiSuCo_pojo(String maloai, String tenLoai) {
         this.maloai = maloai;
         this.tenLoai = tenLoai;
     }

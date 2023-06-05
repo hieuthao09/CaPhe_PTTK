@@ -4,7 +4,7 @@
  */
 package gui;
 
-import bll.TaiKhoan_bll;
+import bll.TaiKhoan;
 import dao.ExcuteData;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import pojo.TaiKhoan;
+import pojo.TaiKhoan_pojo;
 
 /**
  *
@@ -46,20 +46,20 @@ public class Login extends javax.swing.JFrame {
         
     }
     private ExcuteData t;
-    private TaiKhoan_bll tk_bll;
+    private TaiKhoan tk_bll;
     private void LoginSystem()
     {
         t = new ExcuteData("sa","123","QL_CAPHE","HIEUTHAO\\THAO");
-        tk_bll = new TaiKhoan_bll(t);
+        tk_bll = new TaiKhoan(t);
     }
     private void LogoutSystem()
     {
         t.close();
         
     }
-    private boolean checkLogin(TaiKhoan tk)
+    private boolean checkLogin(TaiKhoan_pojo tk)
     {
-        return tk_bll.checkTaiKhoan(tk);
+        return tk_bll.timkiemTaiKhoan(tk);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -317,7 +317,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn chưa điền password");
             return;
         }
-        TaiKhoan tk = new TaiKhoan(txt_Usename.getText(), String.valueOf(txt_password.getPassword()));
+        TaiKhoan_pojo tk = new TaiKhoan_pojo(txt_Usename.getText(), String.valueOf(txt_password.getPassword()));
         if(checkLogin(tk))
         {
             this.setVisible(false);

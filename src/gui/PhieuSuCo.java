@@ -4,9 +4,9 @@
  */
 package gui;
 
-import bll.LoaiSuCo_bll;
-import bll.Nhanvien_bll;
-import bll.SuCo_bll;
+import bll.LoaiSuCo;
+import bll.Nhanvien;
+import bll.SuCo;
 import dao.ExcuteData;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -20,9 +20,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import pojo.LoaiSuCo;
-import pojo.Nhanvien;
-import pojo.SuCo;
+import pojo.LoaiSuCo_pojo;
+import pojo.Nhanvien_pojo;
+import pojo.SuCo_pojo;
 
 /**
  *
@@ -39,30 +39,30 @@ public class PhieuSuCo extends javax.swing.JPanel {
      JComponent com;
      ExcuteData ex;
      boolean flag;
-     SuCo_bll sc_bll ;
-     LoaiSuCo_bll lsc_bll ;
-     Nhanvien_bll nv;
+     SuCo sc_bll ;
+     LoaiSuCo lsc_bll ;
+     Nhanvien nv;
     public PhieuSuCo(JComponent com, ExcuteData ex, boolean flag) {
         initComponents();
         this.com = com;
         this.ex = ex;
         this.flag = flag;
-        this.sc_bll = new SuCo_bll(ex);
-        this.nv = new Nhanvien_bll(ex);
-        this.lsc_bll = new LoaiSuCo_bll(ex);
+        this.sc_bll = new SuCo(ex);
+        this.nv = new Nhanvien(ex);
+        this.lsc_bll = new LoaiSuCo(ex);
         loadComboxLoaiSC();
         loadComboxNV();
         checkTaomoi_CapNhat();
     }
-    SuCo sc =null;
-    public PhieuSuCo(JComponent com, ExcuteData ex, boolean flag, SuCo sc) {
+    SuCo_pojo sc =null;
+    public PhieuSuCo(JComponent com, ExcuteData ex, boolean flag, SuCo_pojo sc) {
         initComponents();
         this.com = com;
         this.ex = ex;
         this.flag = flag;
-        this.sc_bll = new SuCo_bll(ex);
-        this.nv = new Nhanvien_bll(ex);
-        this.lsc_bll = new LoaiSuCo_bll(ex);
+        this.sc_bll = new SuCo(ex);
+        this.nv = new Nhanvien(ex);
+        this.lsc_bll = new LoaiSuCo(ex);
         loadComboxLoaiSC();
         checkTaomoi_CapNhat();
         this.sc = sc;
@@ -125,12 +125,12 @@ public class PhieuSuCo extends javax.swing.JPanel {
             
         }
     }
-    private int searchIndexCombobox_NV(JComboBox t, Nhanvien value)
+    private int searchIndexCombobox_NV(JComboBox t, Nhanvien_pojo value)
     {
-        DefaultComboBoxModel<Nhanvien> model = (DefaultComboBoxModel<Nhanvien>) cbb_NguoiLap.getModel();
+        DefaultComboBoxModel<Nhanvien_pojo> model = (DefaultComboBoxModel<Nhanvien_pojo>) cbb_NguoiLap.getModel();
         for(int i = 0; i< model.getSize(); i++)
         {
-            Nhanvien nhanvien = model.getElementAt(i);
+            Nhanvien_pojo nhanvien = model.getElementAt(i);
             if (nhanvien.getMaNV().equals(value.getMaNV()))
             {
                 return i;
@@ -138,12 +138,12 @@ public class PhieuSuCo extends javax.swing.JPanel {
         }
         return -1;
     }
-    private int searchIndexCombobox_LSC(JComboBox t, LoaiSuCo value)
+    private int searchIndexCombobox_LSC(JComboBox t, LoaiSuCo_pojo value)
     {
-        DefaultComboBoxModel<LoaiSuCo> model = (DefaultComboBoxModel<LoaiSuCo>) cbb_loaisuco.getModel();
+        DefaultComboBoxModel<LoaiSuCo_pojo> model = (DefaultComboBoxModel<LoaiSuCo_pojo>) cbb_loaisuco.getModel();
         for(int i = 0; i< model.getSize(); i++)
         {
-            LoaiSuCo lsc = model.getElementAt(i);
+            LoaiSuCo_pojo lsc = model.getElementAt(i);
             if (lsc.getMaloai().equals(value.getMaloai()))
             {
                 return i;
@@ -153,10 +153,10 @@ public class PhieuSuCo extends javax.swing.JPanel {
     }
     private void loadComboxLoaiSC()
     {
-        ArrayList<LoaiSuCo> dslsc = new ArrayList<>();
+        ArrayList<LoaiSuCo_pojo> dslsc = new ArrayList<>();
         dslsc = lsc_bll.laydanhsachLSC();
-        DefaultComboBoxModel<LoaiSuCo> LoaiSuCoModel = new DefaultComboBoxModel<>();
-        for(LoaiSuCo t : dslsc )
+        DefaultComboBoxModel<LoaiSuCo_pojo> LoaiSuCoModel = new DefaultComboBoxModel<>();
+        for(LoaiSuCo_pojo t : dslsc )
         {
             LoaiSuCoModel.addElement(t);
             
@@ -182,10 +182,10 @@ public class PhieuSuCo extends javax.swing.JPanel {
     }
     private void loadComboxNV()
     {
-        ArrayList<Nhanvien> dslnv = new ArrayList<Nhanvien>();
+        ArrayList<Nhanvien_pojo> dslnv = new ArrayList<Nhanvien_pojo>();
         dslnv= nv.laydanhsachNV_SC();
-        DefaultComboBoxModel<Nhanvien> nhanvienModel = new DefaultComboBoxModel<>();
-        for(Nhanvien t : dslnv )
+        DefaultComboBoxModel<Nhanvien_pojo> nhanvienModel = new DefaultComboBoxModel<>();
+        for(Nhanvien_pojo t : dslnv )
         {
              nhanvienModel.addElement(t);
         }
@@ -423,7 +423,7 @@ public class PhieuSuCo extends javax.swing.JPanel {
 
     private void btn_troveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_troveActionPerformed
         // TODO add your handling code here:
-        dsSuCo psc = new dsSuCo(com, ex);
+        XuLySuCo psc = new XuLySuCo(com, ex);
         psc.setVisible(true);
         com.removeAll();
         // Thêm form PhieuSuCo vào JComponent
@@ -440,7 +440,7 @@ public class PhieuSuCo extends javax.swing.JPanel {
         if(flag)
         {
             {
-                SuCo sc = new SuCo();
+                SuCo_pojo sc = new SuCo_pojo();
                 sc.setMasc(txt_Masc.getText());
                 sc.setTensc(txt_tensc.getText());
                 sc.setChiPhi(Double.parseDouble(txt_ChiPhi.getText()));
@@ -469,8 +469,8 @@ public class PhieuSuCo extends javax.swing.JPanel {
 
                     
                 }
-                sc.setMaLoai((LoaiSuCo)cbb_loaisuco.getSelectedItem());
-                sc.setNguoiLap((Nhanvien)cbb_NguoiLap.getSelectedItem());
+                sc.setMaLoai((LoaiSuCo_pojo)cbb_loaisuco.getSelectedItem());
+                sc.setNguoiLap((Nhanvien_pojo)cbb_NguoiLap.getSelectedItem());
                 if(JOptionPane.showConfirmDialog(com, "Bạn chắc chắn thêm không?")==JOptionPane.YES_NO_OPTION)
                 {
                     if(sc_bll.them(sc))
@@ -492,7 +492,7 @@ public class PhieuSuCo extends javax.swing.JPanel {
             }
             else
             {
-                SuCo sc = new SuCo();
+                SuCo_pojo sc = new SuCo_pojo();
                 sc.setMasc(txt_Masc.getText());
                 sc.setTensc(txt_tensc.getText());
                 String formattedNumber = txt_ChiPhi.getText().replaceAll("\\.", "");
@@ -506,8 +506,8 @@ public class PhieuSuCo extends javax.swing.JPanel {
                 calendar.setTime(dtc_ketthuc.getDate());
                 t = dateFormat.format(calendar.getTime());
                 sc.setTGKetThuc(t);
-                sc.setMaLoai((LoaiSuCo)cbb_loaisuco.getSelectedItem());
-                sc.setNguoiLap((Nhanvien)cbb_NguoiLap.getSelectedItem());
+                sc.setMaLoai((LoaiSuCo_pojo)cbb_loaisuco.getSelectedItem());
+                sc.setNguoiLap((Nhanvien_pojo)cbb_NguoiLap.getSelectedItem());
                 sc.setHinhThuc(txt_hinhthuc.getText());
                 if(JOptionPane.showConfirmDialog(this, "Bạn muốn cập nhật phải không?")==JOptionPane.YES_NO_OPTION)
                 {
@@ -552,8 +552,8 @@ public class PhieuSuCo extends javax.swing.JPanel {
     private javax.swing.JButton btn_Luu;
     private javax.swing.JButton btn_Xoa;
     private javax.swing.JButton btn_trove;
-    private javax.swing.JComboBox<Nhanvien> cbb_NguoiLap;
-    private javax.swing.JComboBox<LoaiSuCo> cbb_loaisuco;
+    private javax.swing.JComboBox<Nhanvien_pojo> cbb_NguoiLap;
+    private javax.swing.JComboBox<LoaiSuCo_pojo> cbb_loaisuco;
     private com.toedter.calendar.JDateChooser dtc_batdau;
     private com.toedter.calendar.JDateChooser dtc_ketthuc;
     private javax.swing.JLabel jLabel2;

@@ -8,7 +8,7 @@ package pojo;
  *
  * @author HieuThao
  */
-public class ChucVu {
+public class ChucVu_pojo {
     private String MaCV;
     private String TenCV;
 
@@ -30,7 +30,7 @@ public class ChucVu {
     
     
 
-    public ChucVu(String MaCV, String TenCV) {
+    public ChucVu_pojo(String MaCV, String TenCV) {
         this.MaCV = MaCV;
         this.TenCV = TenCV;
     }
